@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 import { SealMark } from "@/components/logo";
-import { getAllSkills } from "@/lib/skills";
+import { getAllSkills, REPO_URL } from "@/lib/skills";
 
 export function SiteFooter() {
   const columns = [
@@ -20,6 +20,8 @@ export function SiteFooter() {
       links: [
         { label: "The ethos", href: "/#ethos" },
         { label: "Get started", href: "/#get-started" },
+        { label: "GitHub", href: REPO_URL },
+        { label: "npm: rune-add", href: "https://www.npmjs.com/package/rune-add" },
       ],
     },
   ];
@@ -50,6 +52,9 @@ export function SiteFooter() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
+                        {...(link.href.startsWith("http")
+                          ? { target: "_blank", rel: "noreferrer" }
+                          : {})}
                         className="text-sm text-foreground/80 transition-colors hover:text-primary"
                       >
                         {link.label}

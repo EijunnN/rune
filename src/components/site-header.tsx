@@ -3,10 +3,12 @@ import Link from "next/link";
 
 import { Logo } from "@/components/logo";
 import { Button } from "@/components/ui/button";
+import { REPO_URL } from "@/lib/skills";
 
 const NAV = [
-  { label: "Runes", href: "/#runes" },
-  { label: "Ethos", href: "/#ethos" },
+  { label: "Runes", href: "/#runes", external: false },
+  { label: "Ethos", href: "/#ethos", external: false },
+  { label: "GitHub", href: REPO_URL, external: true },
 ];
 
 export function SiteHeader() {
@@ -22,9 +24,15 @@ export function SiteHeader() {
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+              {...(item.external
+                ? { target: "_blank", rel: "noreferrer" }
+                : {})}
+              className="inline-flex items-center gap-1 text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
               {item.label}
+              {item.external && (
+                <ArrowUpRight className="size-3 text-muted-foreground/60" />
+              )}
             </Link>
           ))}
         </nav>

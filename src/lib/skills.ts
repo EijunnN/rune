@@ -42,6 +42,14 @@ export type Skill = {
   usagePrompt: string;
 };
 
+/** Rune is open source — every rune's files are readable before installing. */
+export const REPO_URL = "https://github.com/EijunnN/rune";
+
+/** Deep link to a rune's source directory on GitHub. */
+export function skillSourceUrl(skill: Pick<Skill, "sourcePath">) {
+  return `${REPO_URL}/tree/main/${skill.sourcePath}`;
+}
+
 /** The package/bin name. Runes install with `<runner> rune-add <slug>` — no global install. */
 export const CLI = "rune-add";
 

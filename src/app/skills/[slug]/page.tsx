@@ -7,7 +7,7 @@ import { SealMark } from "@/components/logo";
 import { SiteFooter } from "@/components/site-footer";
 import { SiteHeader } from "@/components/site-header";
 import { Badge } from "@/components/ui/badge";
-import { getAllSkills, getSkill } from "@/lib/skills";
+import { getAllSkills, getSkill, skillSourceUrl } from "@/lib/skills";
 
 export function generateStaticParams() {
   return getAllSkills().map((skill) => ({ slug: skill.slug }));
@@ -210,7 +210,14 @@ export default async function SkillPage({
                       {skill.agents.length}
                     </ManifestRow>
                     <ManifestRow label="source">
-                      <span className="text-xs">{skill.sourcePath}</span>
+                      <a
+                        href={skillSourceUrl(skill)}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="text-xs underline decoration-border underline-offset-4 transition-colors hover:text-primary hover:decoration-primary"
+                      >
+                        {skill.sourcePath}
+                      </a>
                     </ManifestRow>
                     <ManifestRow label="author">
                       <span className="inline-flex items-center gap-1.5">
