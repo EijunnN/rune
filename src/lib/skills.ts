@@ -98,6 +98,34 @@ const SKILLS: Skill[] = [
       "Review this module the typescript-mastery way — hunt the lies (as, any, !), fix the boundaries with parsed types, and make every switch exhaustive.",
   },
   {
+    slug: "rust-mastery",
+    name: "Rust Mastery",
+    tagline:
+      "Expert Rust where speed and safety reinforce each other — ownership, allocation discipline, profiling, fearless concurrency, disciplined unsafe.",
+    category: "Engineering",
+    tags: ["rust", "performance", "async", "unsafe", "cargo"],
+    version: "1.0.0",
+    updated: "Jul 2, 2026",
+    agents: ["Claude Code", "Codex"],
+    sourcePath: "skills/rust-mastery",
+    overview:
+      "Rust Mastery loads Rust's founding bet into your agent: the safe code and the fast code are the same code. The doctrine has two reinforcing halves — don't fight the borrow checker, redesign until it agrees; and measure, then remove work. The core file carries fifteen non-negotiables and two decision frameworks (the ownership ladder and performance triage); nine reference files go deep on ownership and borrowing, type-driven design, error handling, the full optimization toolbox (profiles, allocation discipline, layout, SIMD, rayon), concurrency and async/tokio, disciplined unsafe with Miri, crate API design, testing, and decoding compiler errors — loaded only when the task needs them.",
+    capabilities: [
+      "The ownership ladder: restructure > borrow > deliberate clone > Rc/Arc > unsafe — with the fight catalog for each borrow-checker classic",
+      "Performance triage in order of leverage: release profiles, algorithms, allocations, copies, contention, rayon, micro",
+      "Allocation discipline: with_capacity, buffer reuse, iterator fusion, arenas, small-vec — the everyday wins",
+      "Profiling as doctrine: criterion, flamegraphs, dhat, hyperfine — no optimization without a before/after in --release",
+      "Type-driven design: illegal states unrepresentable, newtypes, typestate, generics vs dyn dispatch decided by data",
+      "Errors as API: thiserror for libraries, anyhow for apps, panic policy, matchable variants",
+      "Fearless concurrency with discipline: locks never held across .await, cancellation-aware async, rayon vs tokio by workload",
+      "unsafe as a contract: SAFETY comments, safe wrappers, the UB catalog, Miri and fuzzing in CI, FFI mechanics",
+      "Crate craft: API signatures that borrow, additive features, semver discipline, doc tests on every public item",
+      "Compiler-error decoder ring: E0382/E0502/'not Send' surgically fixed, plus build-speed and footgun checklists",
+    ],
+    usagePrompt:
+      "Profile and fix this hot path the rust-mastery way — release build, kill the allocations, justify every clone, and prove the wins with criterion.",
+  },
+  {
     slug: "react-mastery",
     name: "React Mastery",
     tagline:

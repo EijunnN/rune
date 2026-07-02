@@ -22,6 +22,7 @@ npx rune-add react-mastery
 | Rune | Category | Grants |
 | --- | --- | --- |
 | [typescript-mastery](skills/typescript-mastery/SKILL.md) | Engineering | Strictness, narrowing, generics, type-level craft, runtime boundaries |
+| [rust-mastery](skills/rust-mastery/SKILL.md) | Engineering | Ownership, allocation discipline, profiling, async/tokio, disciplined unsafe |
 | [react-mastery](skills/react-mastery/SKILL.md) | Engineering | Architecture, state, effects, performance, React 19, testing, a11y |
 | [web-security](skills/web-security/SKILL.md) | Engineering | Auth, authorization, injection, SSRF, secrets, headers, supply chain |
 | [frontend-aesthetics](skills/frontend-aesthetics/SKILL.md) | Design | Direction, typography, color, atmosphere, motion, the anti-slop catalog |
