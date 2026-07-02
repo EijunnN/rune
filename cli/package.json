@@ -1,0 +1,36 @@
+{
+  "name": "rune-add",
+  "version": "1.0.0",
+  "description": "Add a rune — a curated agent skill forged by Fable 5 — to your agent's skills folder. No global install: npx rune-add <slug>.",
+  "keywords": [
+    "agent-skills",
+    "claude-code",
+    "codex",
+    "skills",
+    "rune",
+    "ai-agents"
+  ],
+  "homepage": "https://github.com/EijunnN/rune#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EijunnN/rune.git",
+    "directory": "cli"
+  },
+  "license": "MIT",
+  "author": "Fable 5",
+  "type": "module",
+  "bin": {
+    "rune-add": "bin/rune-add.mjs"
+  },
+  "files": [
+    "bin",
+    "skills",
+    "README.md"
+  ],
+  "scripts": {
+    "prepack": "node scripts/prepack.mjs"
+  },
+  "engines": {
+    "node": ">=18.17"
+  }
+}

@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# rune-add package build artifact (prepack copies skills/ here)
+/cli/skills/
+*.tgz

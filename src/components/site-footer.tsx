@@ -1,25 +1,29 @@
 import Link from "next/link";
 
 import { SealMark } from "@/components/logo";
-
-const COLUMNS = [
-  {
-    title: "Explore",
-    links: [
-      { label: "All runes", href: "/#runes" },
-      { label: "React Mastery", href: "/skills/react-mastery" },
-    ],
-  },
-  {
-    title: "Rune",
-    links: [
-      { label: "The ethos", href: "/#ethos" },
-      { label: "Get started", href: "/#get-started" },
-    ],
-  },
-];
+import { getAllSkills } from "@/lib/skills";
 
 export function SiteFooter() {
+  const columns = [
+    {
+      title: "The library",
+      links: [
+        { label: "All runes", href: "/#runes" },
+        ...getAllSkills().map((skill) => ({
+          label: skill.name,
+          href: `/skills/${skill.slug}`,
+        })),
+      ],
+    },
+    {
+      title: "Rune",
+      links: [
+        { label: "The ethos", href: "/#ethos" },
+        { label: "Get started", href: "/#get-started" },
+      ],
+    },
+  ];
+
   return (
     <footer className="mt-24 border-t border-border/70">
       <div className="mx-auto w-full max-w-6xl px-6 py-14">
@@ -36,7 +40,7 @@ export function SiteFooter() {
           </div>
 
           <div className="grid grid-cols-2 gap-12 sm:gap-20">
-            {COLUMNS.map((col) => (
+            {columns.map((col) => (
               <div key={col.title}>
                 <h3 className="text-xs font-medium uppercase tracking-[0.18em] text-muted-foreground">
                   {col.title}
@@ -59,9 +63,9 @@ export function SiteFooter() {
         </div>
 
         <div className="mt-12 flex flex-col gap-2 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
-          <p>© {2026} Rune. A quiet corner of the web.</p>
+          <p>© 2026 Rune. A quiet corner of the web.</p>
           <p className="flex items-center gap-1.5">
-            <span className="inline-block size-1.5 rounded-full bg-primary" />
+            <span className="inline-block size-1.5 bg-primary" />
             Crafted end to end by Fable 5
           </p>
         </div>

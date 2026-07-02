@@ -74,17 +74,33 @@
     outline-color: color-mix(in oklch, var(--color-ring) 50%, transparent);
   }
 
+  /* The ground is on <html> too — no white flash before the body paints. */
+  html {
+    background-color: var(--color-background);
+    scroll-behavior: smooth;
+    /* Terminal-thin scrollbar, in theme */
+    scrollbar-width: thin;
+    scrollbar-color: var(--color-border) var(--color-background);
+  }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans), ui-monospace, "SF Mono", monospace;
     -webkit-font-smoothing: antialiased;
-    /* CRT scanlines — barely-there horizontal texture */
-    background-image: repeating-linear-gradient(
-      0deg,
-      oklch(1 0 0 / 0.02) 0 1px,
-      transparent 1px 3px
-    );
+    /* CRT tube: scanlines + a soft vignette pulling the corners down */
+    background-image:
+      radial-gradient(
+        ellipse 120% 90% at 50% 20%,
+        transparent 60%,
+        oklch(0 0 0 / 0.35) 100%
+      ),
+      repeating-linear-gradient(
+        0deg,
+        oklch(1 0 0 / 0.02) 0 1px,
+        transparent 1px 3px
+      );
+    background-attachment: fixed;
   }
 
   ::selection {
@@ -96,6 +112,19 @@
 @layer utilities {
   .font-pixel {
     font-family: var(--font-pixel), var(--font-sans), monospace;
+  }
+
+  /* Phosphor glow — for pixel display type and lit accents */
+  .glow-primary {
+    text-shadow:
+      0 0 12px color-mix(in oklch, var(--color-primary) 55%, transparent),
+      0 0 32px color-mix(in oklch, var(--color-primary) 25%, transparent);
+  }
+
+  /* Inside the vermilion band the global selection colors would vanish — invert them */
+  .on-primary ::selection {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
   }
 
   /* A dashed pixel divider */
@@ -141,5 +170,25 @@
 
   .animate-blink {
     animation: blink 1.1s steps(1, end) infinite;
+  }
+}
+
+/* Motion is a preference, not a mandate. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .animate-rise,
+  .animate-blink {
+    animation: none;
+  }
+
+  *,
+  ::before,
+  ::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
   }
 }

@@ -55,10 +55,10 @@ export function SkillsExplorer({ skills }: { skills: Skill[] }) {
               onClick={() => setActive(filter)}
               aria-pressed={active === filter}
               className={cn(
-                "h-8 rounded-full px-3.5 text-sm transition-colors",
+                "h-8 border px-3.5 font-mono text-sm transition-colors",
                 active === filter
-                  ? "bg-foreground text-background"
-                  : "text-muted-foreground hover:bg-accent hover:text-foreground",
+                  ? "border-primary bg-primary text-primary-foreground"
+                  : "border-border text-muted-foreground hover:border-foreground/40 hover:text-foreground",
               )}
             >
               {filter}
@@ -89,20 +89,30 @@ export function SkillsExplorer({ skills }: { skills: Skill[] }) {
       </div>
 
       {filtered.length > 0 ? (
-        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((skill) => (
-            <SkillCard key={skill.slug} skill={skill} />
+        <div className="mt-6">
+          {filtered.map((skill, i) => (
+            <SkillCard key={skill.slug} skill={skill} index={i} />
           ))}
         </div>
       ) : (
-        <div className="mt-6 flex flex-col items-center justify-center rounded-xl border border-dashed py-20 text-center">
+        <div className="mt-6 flex flex-col items-center justify-center border border-dashed py-20 text-center">
           <SealMark className="size-8 opacity-40 grayscale" />
-          <p className="mt-4 text-sm font-medium text-foreground">
-            Nothing matches that yet
+          <p className="mt-4 font-mono text-sm font-medium text-foreground">
+            No rune answers to that name
           </p>
           <p className="mt-1 max-w-xs text-sm text-muted-foreground">
-            Try a broader term, or clear the filters to see the whole library.
+            Try a broader term, or see the whole library.
           </p>
+          <button
+            type="button"
+            onClick={() => {
+              setQuery("");
+              setActive("All");
+            }}
+            className="mt-5 inline-flex h-8 items-center border border-border px-3.5 font-mono text-sm text-muted-foreground transition-colors hover:border-primary hover:text-primary"
+          >
+            Clear the filters
+          </button>
         </div>
       )}
     </div>

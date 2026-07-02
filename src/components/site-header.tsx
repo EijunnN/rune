@@ -30,17 +30,9 @@ export function SiteHeader() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <Button
-            asChild
-            variant="ghost"
-            size="sm"
-            className="hidden text-muted-foreground sm:inline-flex"
-          >
-            <Link href="/#ethos">Docs</Link>
-          </Button>
           <Button asChild size="sm">
             <Link href="/#get-started">
-              Get started
+              Add a rune
               <ArrowUpRight className="size-3.5" />
             </Link>
           </Button>

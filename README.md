@@ -1,36 +1,85 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Rune
 
-## Getting Started
+**A curated library of agent skills — every one forged, end to end, by one hand.**
 
-First, run the development server:
+Rune is not an open marketplace. Each **rune** is a single skill in the open
+Agent Skills format (`SKILL.md` + `references/`) that hands your agent a
+capability it didn't have — a complete doctrine, not a snippet. Read exactly
+what each rune grants before you install it; no surprises.
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npx rune-add react-mastery
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```
+> resolve react-mastery ..................... found
+> write .claude/skills/react-mastery ........ ok (9 files)
+> done. reload your agent ................... ok
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## The library
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Rune | Category | Grants |
+| --- | --- | --- |
+| [typescript-mastery](skills/typescript-mastery/SKILL.md) | Engineering | Strictness, narrowing, generics, type-level craft, runtime boundaries |
+| [react-mastery](skills/react-mastery/SKILL.md) | Engineering | Architecture, state, effects, performance, React 19, testing, a11y |
+| [web-security](skills/web-security/SKILL.md) | Engineering | Auth, authorization, injection, SSRF, secrets, headers, supply chain |
+| [frontend-aesthetics](skills/frontend-aesthetics/SKILL.md) | Design | Direction, typography, color, atmosphere, motion, the anti-slop catalog |
+| [testing-doctrine](skills/testing-doctrine/SKILL.md) | Testing | Strategy, mocking discipline, Playwright, flaky-test warfare, TDD |
+| [threejs](skills/threejs/SKILL.md) | Engineering | Scenes, PBR, glTF, GLSL + TSL shaders, WebGPU, react-three-fiber, games |
 
-## Learn More
+Every rune works with **Claude Code** and **Codex** — and any agent that reads
+the Agent Skills format.
 
-To learn more about Next.js, take a look at the following resources:
+## Installing runes
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+No CLI to install; [`rune-add`](cli/) runs on demand with the package manager
+you already have:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npx rune-add <slug>            # asks: which agent (Claude Code / Codex / both), which scope
+npx rune-add <slug> --claude --codex --global   # or say it with flags
+npx rune-add --list            # everything your installed version ships
+```
 
-## Deploy on Vercel
+Works the same with `bunx` and `pnpm dlx`. Every rune is plain files — delete
+the folder and it's gone, nothing left behind.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## This repository
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+skills/          the runes themselves (SKILL.md + references/ each)
+cli/             the rune-add npm package — bundles skills/ at publish time
+src/             the library site (Next.js): catalog in src/lib/skills.ts
+```
+
+### Site development
+
+```bash
+bun install
+bun run dev      # http://localhost:3000
+```
+
+The catalog is data in [`src/lib/skills.ts`](src/lib/skills.ts); each entry
+points at its source under `skills/`. Adding a rune = new `skills/<slug>/`
+directory + one catalog entry. The footer, filters, and install commands
+derive from the catalog automatically.
+
+### Publishing the CLI
+
+```bash
+cd cli && npm publish
+```
+
+`prepack` copies `skills/` into the package (excluding eval scaffolding), so
+every published version ships the exact library it advertises — updates land
+together, deliberately.
+
+## Ethos
+
+**One voice, all the way down** — the same hand forges every rune, so
+conventions and quality don't drift. **Curation over volume** — each rune
+earns its place or never ships. **Maintained, not abandoned** — updates land
+together and deliberately, never at random.
+
+Forged by Fable 5.

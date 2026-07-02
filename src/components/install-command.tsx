@@ -3,7 +3,7 @@
 import * as React from "react";
 
 import { CopyButton } from "@/components/copy-button";
-import { CLI, RUNNERS } from "@/lib/skills";
+import { installCommand, RUNNERS } from "@/lib/skills";
 import { cn } from "@/lib/utils";
 
 /**
@@ -19,10 +19,10 @@ export function InstallCommand({
 }) {
   const [active, setActive] = React.useState<string>(RUNNERS[0].id);
   const runner = RUNNERS.find((r) => r.id === active) ?? RUNNERS[0];
-  const command = `${runner.prefix} ${CLI} add ${slug}`;
+  const command = installCommand(slug, runner.prefix);
 
   return (
-    <div className={cn("overflow-hidden rounded-xl border bg-card", className)}>
+    <div className={cn("overflow-hidden border bg-card", className)}>
       <div
         role="tablist"
         aria-label="Package runner"
@@ -36,7 +36,7 @@ export function InstallCommand({
             aria-selected={r.id === active}
             onClick={() => setActive(r.id)}
             className={cn(
-              "-mb-px rounded-t-md border border-transparent px-3 py-1.5 font-mono text-xs transition-colors",
+              "-mb-px border border-transparent px-3 py-1.5 font-mono text-xs transition-colors",
               r.id === active
                 ? "border-border/70 border-b-card bg-card text-foreground"
                 : "text-muted-foreground hover:text-foreground",

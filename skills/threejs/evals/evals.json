@@ -1,0 +1,29 @@
+{
+  "skill_name": "threejs",
+  "evals": [
+    {
+      "id": 1,
+      "prompt": "Create a single-file HTML page (import three from a CDN importmap) that shows a 3D product viewer: load https://raw.githubusercontent.com/KhronosGroup/glTF-Sample-Assets/main/Models/DamagedHelmet/glTF-Binary/DamagedHelmet.glb, studio-style environment lighting, soft shadow under the model, orbit controls limited so you can't go under the floor, and it must handle window resizing correctly.",
+      "expected_output": "Working HTML file: GLTFLoader + environment (RoomEnvironment or HDR), ACES/AgX tone mapping, shadow-catcher plane or ShadowMaterial, OrbitControls with maxPolarAngle, resize handler with updateProjectionMatrix, capped pixelRatio, delta-based loop.",
+      "files": []
+    },
+    {
+      "id": 2,
+      "prompt": "In my React app I have a spinning cube in react-three-fiber but the page slows down over time and the cube speed changes depending on the monitor. Here's my component: it uses useState for rotation inside useFrame and creates a new THREE.Color in the JSX props every render. Fix it and explain what was wrong.",
+      "expected_output": "Rewritten component using useRef mutation in useFrame with delta-scaled rotation, no setState per frame, memoized/static color prop, explanation of frame-rate independence and R3F golden rules.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "prompt": "My Three.js scene renders the glTF model way too dark and the metal parts are completely black, plus textures I load myself with TextureLoader look washed out compared to Blender. Using MeshStandardMaterial and a DirectionalLight. What's wrong?",
+      "expected_output": "Diagnosis: missing scene.environment (IBL) so metals reflect nothing, missing tone mapping (ACESFilmic/AgX/Neutral), and TextureLoader color maps need texture.colorSpace = SRGBColorSpace. Concrete corrected code.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "prompt": "Render 20,000 animated grass blades swaying in the wind at 60fps in Three.js. It currently uses 20,000 separate Mesh objects and runs at 4fps.",
+      "expected_output": "InstancedMesh (one draw call) with per-instance matrices, wind via vertex shader (onBeforeCompile or TSL positionNode) driven by a time uniform and per-instance variation, not per-frame CPU matrix updates; mentions frustum culling caveat.",
+      "files": []
+    }
+  ]
+}

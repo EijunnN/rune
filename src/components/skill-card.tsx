@@ -1,43 +1,42 @@
 import { ArrowUpRight } from "lucide-react";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import type { Skill } from "@/lib/skills";
 
-export function SkillCard({ skill }: { skill: Skill }) {
+/**
+ * A library entry rendered as a directory-listing row — the whole page is a
+ * terminal session, so the catalog reads like `ls /library`. Hover inverts the
+ * row into the vermilion accent: the signature interaction of the site.
+ */
+export function SkillCard({ skill, index }: { skill: Skill; index: number }) {
   return (
     <Link
       href={`/skills/${skill.slug}`}
-      className="group relative flex flex-col border border-border bg-card p-5 transition-all duration-150 hover:-translate-x-1 hover:-translate-y-1 hover:border-primary hover:shadow-pixel focus-visible:outline-none focus-visible:ring-[3px] focus-visible:ring-ring/40"
+      className="group relative grid grid-cols-[auto_1fr_auto] items-baseline gap-x-4 border-t border-border px-3 py-6 transition-colors last:border-b hover:bg-primary focus-visible:bg-primary focus-visible:outline-none md:grid-cols-[3.5rem_1fr_16rem_auto] md:gap-x-6 md:px-4"
     >
-      <div className="flex items-center justify-between">
-        <Badge variant="muted" className="tracking-wide">
-          {skill.category}
-        </Badge>
-        <span className="font-mono text-[0.65rem] uppercase tracking-wide text-muted-foreground">
-          {skill.agents.join(" · ")}
-        </span>
-      </div>
+      <span className="font-pixel text-[0.65rem] text-primary group-hover:text-primary-foreground group-focus-visible:text-primary-foreground">
+        {String(index).padStart(2, "0")}
+      </span>
 
-      <h3 className="mt-4 text-lg font-semibold tracking-tight text-foreground">
-        {skill.name}
-      </h3>
-      <p className="mt-1.5 flex-1 text-sm leading-relaxed text-muted-foreground">
-        {skill.tagline}
-      </p>
-
-      <div className="mt-5 flex items-center justify-between">
-        <div className="flex flex-wrap gap-1.5">
-          {skill.tags.slice(0, 3).map((tag) => (
-            <span
-              key={tag}
-              className="font-mono text-[0.7rem] text-muted-foreground/80"
-            >
-              #{tag}
-            </span>
+      <div className="min-w-0">
+        <h3 className="font-mono text-xl font-bold tracking-tight text-foreground group-hover:text-primary-foreground group-focus-visible:text-primary-foreground md:text-2xl">
+          {skill.name}
+        </h3>
+        <p className="mt-1.5 max-w-xl text-sm leading-relaxed text-muted-foreground group-hover:text-primary-foreground/80 group-focus-visible:text-primary-foreground/80">
+          {skill.tagline}
+        </p>
+        <div className="mt-3 flex flex-wrap gap-x-3 gap-y-1 font-mono text-[0.7rem] text-muted-foreground/80 group-hover:text-primary-foreground/70 group-focus-visible:text-primary-foreground/70">
+          {skill.tags.slice(0, 4).map((tag) => (
+            <span key={tag}>#{tag}</span>
           ))}
         </div>
-        <ArrowUpRight className="size-4 text-muted-foreground transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary" />
       </div>
+
+      <div className="col-start-2 mt-3 flex items-center gap-3 font-mono text-[0.65rem] uppercase tracking-wide text-muted-foreground group-hover:text-primary-foreground/80 group-focus-visible:text-primary-foreground/80 md:col-start-3 md:mt-0 md:flex-col md:items-end md:gap-1">
+        <span>{skill.category}</span>
+        <span>{skill.agents.join(" · ")}</span>
+      </div>
+
+      <ArrowUpRight className="hidden size-5 self-center text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-primary-foreground group-focus-visible:text-primary-foreground md:block" />
     </Link>
   );
 }

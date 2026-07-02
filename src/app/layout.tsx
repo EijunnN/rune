@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { JetBrains_Mono, Press_Start_2P } from "next/font/google";
 import "./globals.css";
 
@@ -27,6 +27,11 @@ export const metadata: Metadata = {
     "agent superpowers",
     "AI agent tools",
   ],
+};
+
+export const viewport: Viewport = {
+  // Matches --background so mobile browser chrome joins the CRT ground.
+  themeColor: "#0d0e10",
 };
 
 export default function RootLayout({

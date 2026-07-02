@@ -42,8 +42,8 @@ export type Skill = {
   usagePrompt: string;
 };
 
-/** The package/bin name. Runes install with `<runner> rune add <slug>` — no global install. */
-export const CLI = "rune";
+/** The package/bin name. Runes install with `<runner> rune-add <slug>` — no global install. */
+export const CLI = "rune-add";
 
 /** Package runners users can pick from. `npx` is the safe default (ships with npm). */
 export const RUNNERS = [
@@ -58,10 +58,37 @@ export function installCommand(
   slug: string,
   prefix: string = RUNNERS[0].prefix,
 ) {
-  return `${prefix} ${CLI} add ${slug}`;
+  return `${prefix} ${CLI} ${slug}`;
 }
 
 const SKILLS: Skill[] = [
+  {
+    slug: "typescript-mastery",
+    name: "TypeScript Mastery",
+    tagline:
+      "The complete TypeScript doctrine — strictness, narrowing, generics, type-level craft, runtime boundaries — in one rune.",
+    category: "Engineering",
+    tags: ["typescript", "types", "generics", "zod", "tsconfig"],
+    version: "1.0.0",
+    updated: "Jul 2, 2026",
+    agents: ["Claude Code", "Codex"],
+    sourcePath: "skills/typescript-mastery",
+    overview:
+      "TypeScript Mastery loads a complete typing doctrine into your agent: types are sets, the compiler is a prover, and every bad type traces to lying to it, withholding evidence, or proving in the wrong place. The core file carries fifteen non-negotiables and two decision frameworks (any/unknown/never/assertion, and where a type should live); eight reference files go deep on tsconfig and module resolution, narrowing and control flow, generics that pay rent, type-level programming, runtime validation at boundaries, everyday type design, declarations and publishing, and decoding compiler errors — loaded only when the task needs them, so the rune stays light in context.",
+    capabilities: [
+      "Version- and config-aware from the first line: reads tsconfig strictness before advising, knows erasable-syntax runtimes",
+      "The strict baseline plus the flags worth adding: noUncheckedIndexedAccess, exactOptionalPropertyTypes, verbatimModuleSyntax",
+      "Narrowing doctrine: discriminated unions, enforced exhaustiveness, and the six walls where control flow gives up",
+      "Generics discipline: the parameter-appears-twice rule, inference-first design, NoInfer and const type params",
+      "Type-level programming with a conscience: conditional/mapped/template-literal types, named and tested, derived from values when possible",
+      "Parse-don't-assert at every boundary: zod schemas, branded identifiers, errors as unknown, Result unions for expected failures",
+      "interface-vs-type settled, satisfies over annotation for const data, enums replaced with as-const objects",
+      "Publishing types that survive contact: exports maps validated with attw, module augmentation, JS→TS migration ratchet",
+      "Compiler-error decoder ring and tsc performance triage: from 'not assignable' archaeology to instantiation-depth blowups",
+    ],
+    usagePrompt:
+      "Review this module the typescript-mastery way — hunt the lies (as, any, !), fix the boundaries with parsed types, and make every switch exhaustive.",
+  },
   {
     slug: "react-mastery",
     name: "React Mastery",
@@ -138,6 +165,61 @@ const SKILLS: Skill[] = [
     ],
     usagePrompt:
       "Restyle this landing page the frontend-aesthetics way — name a direction, retheme the tokens, and sweep the slop catalog.",
+  },
+  {
+    slug: "testing-doctrine",
+    name: "Testing Doctrine",
+    tagline:
+      "Tests that let you change code without fear — strategy, mocking discipline, Playwright, and the war on flakes.",
+    category: "Testing",
+    tags: ["testing", "vitest", "playwright", "msw", "tdd"],
+    version: "1.0.0",
+    updated: "Jul 2, 2026",
+    agents: ["Claude Code", "Codex"],
+    sourcePath: "skills/testing-doctrine",
+    overview:
+      "Testing Doctrine loads one conviction into your agent: a test suite exists to let you change code with confidence, so every test is judged by the promise it protects — behavior through a public contract, never implementation detail. The core file carries fifteen non-negotiables and two decision frameworks (which level catches this failure, and to-mock-or-not); eight reference files go deep on test strategy and coverage policy, unit tests that survive refactors, mocking discipline, integration and API testing, Playwright end-to-end, UI component testing, the flaky-test playbook, and TDD workflow with CI pipeline shape — loaded only when the task needs them.",
+    capabilities: [
+      "Fits the codebase first: detects the runner and conventions, extends what exists, never introduces a parallel stack",
+      "Level-selection doctrine: start from the failure you fear, pick the lowest level that catches it honestly — integration as the workhorse",
+      "The mocking ladder: real thing > hand-written fake > MSW at the wire > vi.mock as last resort — and never mock what you own",
+      "Unit tests as executable spec: behavior names, builders over fixtures, table-driven cases, snapshot discipline",
+      "API testing through the front door: app factories, real test databases via containers, tenant-scoping security tests",
+      "Playwright doctrine: role-first locators, auto-waiting over sleeps, auth state reuse, data setup via API not UI",
+      "The flaky-test playbook: eight root-cause families, quarantine policy, retries as telemetry never treatment",
+      "Coverage as flashlight not target — plus mutation testing where honesty matters",
+      "TDD where it pays, reproduce-first on every bug fix, and the cheapest-first CI ladder with sharding",
+    ],
+    usagePrompt:
+      "Audit this test file the testing-doctrine way — find the implementation coupling, fix the mocking, and make every name read as a spec.",
+  },
+  {
+    slug: "threejs",
+    name: "Three.js Mastery",
+    tagline:
+      "Complete 3D doctrine — scenes, PBR, glTF, shaders (GLSL + TSL), WebGPU, and react-three-fiber — in one rune.",
+    category: "Engineering",
+    tags: ["threejs", "webgl", "webgpu", "shaders", "r3f", "3d"],
+    version: "1.0.0",
+    updated: "Jul 1, 2026",
+    agents: ["Claude Code", "Codex"],
+    sourcePath: "skills/threejs",
+    overview:
+      "Three.js Mastery loads a complete 3D graphics doctrine into your agent: diagnose every scene through the scene graph, the camera, materials-and-light, and the frame loop — in that order. The core file carries the canonical renderer setup, the WebGL-versus-WebGPU decision table, and ten non-negotiables (delta time, color spaces, disposal, depth precision); eleven reference files go deep on fundamentals, geometries and materials, lights/shadows/IBL, the glTF pipeline, the animation system, custom shaders in both GLSL and TSL, post-processing on both renderers, games and interaction, performance, react-three-fiber v9, and a symptom-to-fix troubleshooting table — loaded only when the task needs them, so the rune stays light in context.",
+    capabilities: [
+      "Version-aware from the first line: checks the installed release and heeds Three.js' monthly breaking changes",
+      "The canonical setup that never black-screens: camera placement, tone mapping, capped DPR, resize, delta-scaled loop",
+      "PBR that actually looks good: environment-map IBL doctrine, physical light units, material decision table",
+      "The glTF pipeline end to end: DRACO/KTX2/Meshopt loading, post-load housekeeping, gltf-transform optimization",
+      "Shadow artifacts decoded: acne, peter-panning, blocky edges — each with its exact fix",
+      "Custom shaders on both stacks: GLSL ShaderMaterial and onBeforeCompile for WebGL, TSL node materials and compute for WebGPU",
+      "Draw-call discipline: InstancedMesh, BatchedMesh, merging, LOD — profile first via renderer.info",
+      "Game-ready patterns: fixed-timestep loops, camera-relative movement, character controllers, third-person camera rigs, Rapier physics, positional audio",
+      "react-three-fiber v9 golden rules: refs over state in useFrame, drei before DIY, automatic disposal semantics",
+      "A symptom-to-cause troubleshooting table for the classics: black screen, invisible model, washed-out colors, z-fighting",
+    ],
+    usagePrompt:
+      "Build a product viewer for this GLB the threejs way — studio IBL, soft contact shadow, capped DPR, and orbit controls that can't go under the floor.",
   },
 ];
 
