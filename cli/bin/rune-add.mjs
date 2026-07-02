@@ -18,18 +18,12 @@ import { homedir } from "node:os";
 import { dirname, join, relative, resolve, sep } from "node:path";
 import { createInterface } from "node:readline/promises";
 import { fileURLToPath } from "node:url";
+import { bold, canSelect, dim, red, select } from "./prompt.mjs";
 
 const pkgRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 // Published: skills/ ships in the package. Dev checkout: fall back to repo root.
 const skillsRoot = [join(pkgRoot, "skills"), resolve(pkgRoot, "..", "skills")]
   .find((p) => existsSync(p));
-
-const useColor =
-  process.stdout.isTTY && !("NO_COLOR" in process.env) && process.env.TERM !== "dumb";
-const paint = (code) => (s) => (useColor ? `\x1b[${code}m${s}\x1b[0m` : s);
-const red = paint("38;5;203");
-const dim = paint("2");
-const bold = paint("1");
 
 /* `> label ..... value` — the house voice. */
 function line(label, value, valuePaint = (s) => s) {
@@ -77,8 +71,15 @@ function makeAsker() {
   return { rl, nextLine };
 }
 
-/* Numbered picker in the house voice. Empty answer = first option. */
+/*
+ * Picker: real TTY → arrow-key selector (prompt.mjs); piped/CI stdin → the
+ * numbered line reader, so scripts and tests stay drivable.
+ */
 async function ask(asker, question, options) {
+  if (canSelect()) {
+    console.log();
+    return select(question, options);
+  }
   console.log();
   console.log(`${red(">")} ${question}`);
   console.log();
@@ -184,7 +185,7 @@ const canAsk =
 
 if (agents.length === 0 && !customDir) {
   if (canAsk) {
-    const asker = makeAsker();
+    const asker = canSelect() ? null : makeAsker(); // line reader only when stdin is piped
     agents.push(
       ...(await ask(asker, "which agent gets this rune?", [
         { label: "Claude Code", hint: ".claude/skills", value: ["claude"] },
@@ -198,7 +199,7 @@ if (agents.length === 0 && !customDir) {
         { label: "Global", hint: "your home directory — live in every project", value: true },
       ]);
     }
-    asker.rl.close();
+    asker?.rl.close();
   } else {
     agents.push("claude"); // non-interactive default: the least surprising target
   }

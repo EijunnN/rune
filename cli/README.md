@@ -29,8 +29,10 @@ npx rune-add <slug> [<slug> ...]   # add rune(s) — asks where they should go
 npx rune-add --list                # every rune this version ships
 ```
 
-Run it bare and it asks two questions: **which agent** (Claude Code, Codex, or
-both) and **which scope** (this project, or global so it's live everywhere).
+Run it bare and it asks two questions with an arrow-key menu — **which agent**
+(Claude Code, Codex, or both) and **which scope** (this project, or global so
+it's live everywhere). `↑↓` move, `Enter` selects, `1-3` jumps, `Esc` aborts;
+each answer collapses into the same boot-log trace as the rest of the output.
 Pass flags to skip the questions:
 
 | Flag           | Effect                                                          |
