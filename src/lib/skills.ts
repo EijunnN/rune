@@ -259,6 +259,34 @@ const SKILLS: Skill[] = [
       "Build this platformer the web-games way — fixed timestep, buffered jumps with coyote time, pooled particles, and saves that survive updates.",
   },
   {
+    slug: "bevy-mastery",
+    name: "Bevy Mastery",
+    tagline:
+      "The Rust ECS engine, mastered — world-as-database thinking, plugins, schedules, Avian physics, and surviving Bevy's release cadence.",
+    category: "Games",
+    tags: ["bevy", "rust", "ecs", "gamedev", "wasm"],
+    version: "1.0.0",
+    updated: "Jul 2, 2026",
+    agents: ["Claude Code", "Codex"],
+    sourcePath: "skills/bevy-mastery",
+    overview:
+      "Bevy Mastery loads the ECS mental model into your agent: the world is a database, systems are queries the scheduler parallelizes wherever data access allows, and both of Bevy's gifts — Rust's guarantees and automatic parallelism — are bought by declaring data access honestly. Version awareness is doctrine, not a tip: Bevy breaks APIs every release, so the rune teaches what survives (the model, scheduling, architecture) and the discipline of migration guides. Fifteen non-negotiables and two decision frameworks (where does this logic live, and component granularity); nine references cover ECS fundamentals, app architecture with plugins and states, events and observers, transforms and rendering, assets and scenes, input and UI, gameplay patterns with Avian physics, performance on both clocks (frame time and compile time), and an error bestiary with the ecosystem crate map.",
+    capabilities: [
+      "Version-survival discipline: check Cargo.toml first, migration guides as ritual, ecosystem compat tables before any bump",
+      "ECS doctrine: components as data, markers everywhere, state-as-component, the archetype cost model",
+      "Query craft: tight access for parallelism, deferred-command boundaries, the B0001 resolution ladder",
+      "Architecture that scales: one plugin per feature, set spines (Intents→Resolve→Cleanup), states with symmetric cleanup",
+      "The reactive palette: buffered events vs observers vs change detection — chosen by timing, not habit",
+      "Gameplay in FixedUpdate, presentation in Update — with intent components bridging the two clocks",
+      "Avian physics integration, character controllers with buffering and coyote time, timers as components",
+      "Headless testing as a superpower: MinimalPlugins + gameplay plugins asserted in CI without a window",
+      "Both performance fights won: dynamic_linking dev loops in seconds, Tracy-profiled schedules in release",
+      "WASM/itch builds with the web platform's rules, and the honest Bevy-vs-web-stack sizing call",
+    ],
+    usagePrompt:
+      "Restructure this main.rs the bevy-mastery way — feature plugins, a set spine in FixedUpdate, states with scoped cleanup, and intents bridging input to simulation.",
+  },
+  {
     slug: "testing-doctrine",
     name: "Testing Doctrine",
     tagline:
