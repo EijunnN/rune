@@ -287,6 +287,34 @@ const SKILLS: Skill[] = [
       "Restructure this main.rs the bevy-mastery way — feature plugins, a set spine in FixedUpdate, states with scoped cleanup, and intents bridging input to simulation.",
   },
   {
+    slug: "multiplayer-netcode",
+    name: "Multiplayer Netcode",
+    tagline:
+      "The art of hiding the speed of light — rollback, prediction, lag compensation, and servers that trust nobody.",
+    category: "Games",
+    tags: ["netcode", "multiplayer", "rollback", "webrtc", "websocket"],
+    version: "1.0.0",
+    updated: "Jul 2, 2026",
+    agents: ["Claude Code", "Codex"],
+    sourcePath: "skills/multiplayer-netcode",
+    overview:
+      "Multiplayer Netcode loads the distributed-systems truth of networked games into your agent: every machine holds a different, delayed, partially-wrong view of the world, and netcode is choosing deliberately where to put the latency and who resolves disputes. Fifteen non-negotiables and two decision frameworks (choose the model by genre, and the it-feels-bad-online triage); eight references cover architecture models and authority topologies, client prediction and reconciliation, entity interpolation and lag compensation, rollback and the determinism discipline, delta compression and interest management, web transports (WebSocket/WebRTC/WebTransport), game server architecture with layered anti-cheat, and testing under simulated hostile networks. Engine-agnostic doctrine with web (Colyseus/geckos) and Rust/Bevy (lightyear/ggrs/renet) stack notes throughout.",
+    capabilities: [
+      "Model selection as the first decision: rollback vs prediction vs lockstep vs relaxed sync, chosen by the genre's latency-tolerance profile",
+      "Authority doctrine: one owner per fact, clients send inputs never results — cheats killed by construction",
+      "Client prediction with reconciliation: shared sim code, input histories, redundant sends, smoothed corrections",
+      "The three-time-domains picture: server present, predicted present, interpolated past — and which queries live where",
+      "Lag compensation with bounded rewind: favor-the-shooter as a policy with limits, not an accident",
+      "Determinism as engineering: seeded sim-owned RNG, iteration-order discipline, checksums, replay-driven desync hunting",
+      "Bandwidth's four levers: acked deltas, quantization, send-rate priority, interest management that doubles as anti-wallhack",
+      "Web transport truth: WebSocket's head-of-line ceiling, WebRTC DataChannels, WebTransport, and when each ships",
+      "Server anatomy: room-based tick loops, headless CI bot matches, layered security sized to stakes",
+      "The condition simulator doctrine: latency/jitter/loss sliders from week one — localhost-only netcode hasn't run",
+    ],
+    usagePrompt:
+      "Redesign my socket.io position-broadcast game the multiplayer-netcode way — server authority, inputs not results, prediction plus interpolation, and a bandwidth budget that survives ten players.",
+  },
+  {
     slug: "testing-doctrine",
     name: "Testing Doctrine",
     tagline:
