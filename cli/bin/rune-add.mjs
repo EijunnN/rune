@@ -21,6 +21,10 @@ import { fileURLToPath } from "node:url";
 import { bold, canSelect, dim, red, select } from "./prompt.mjs";
 
 const pkgRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
+// Own version, shown in --list and errors so stale npx/bunx caches self-identify.
+const VERSION = JSON.parse(
+  readFileSync(join(pkgRoot, "package.json"), "utf8"),
+).version;
 // Published: skills/ ships in the package. Dev checkout: fall back to repo root.
 const skillsRoot = [join(pkgRoot, "skills"), resolve(pkgRoot, "..", "skills")]
   .find((p) => existsSync(p));
@@ -110,7 +114,7 @@ function listRunes() {
     .filter((d) => d.isDirectory() && existsSync(join(skillsRoot, d.name, "SKILL.md")))
     .map((d) => d.name);
   console.log();
-  line("mount /library", `${slugsAvail.length} runes`);
+  line(`mount /library (rune-add v${VERSION})`, `${slugsAvail.length} runes`);
   console.log();
   for (const slug of slugsAvail) {
     console.log(`  ${bold(slug)}`);
@@ -239,7 +243,13 @@ for (const slug of slugs) {
   const source = join(skillsRoot, slug);
   if (!existsSync(join(source, "SKILL.md"))) {
     fail(`resolve ${slug}`, "not found");
-    console.log(dim(`  no rune by that name — try: npx rune-add --list`));
+    console.log(
+      dim(
+        `  not in rune-add v${VERSION} — see: npx rune-add --list\n` +
+          `  (older versions ship fewer runes; a stale npx/bunx cache serves old copies —\n` +
+          `   force the current release with: bunx rune-add@latest ${slug})`,
+      ),
+    );
     continue;
   }
   line(`resolve ${slug}`, "found");
