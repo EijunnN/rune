@@ -9,6 +9,7 @@
 
 export const CATEGORIES = [
   "Engineering",
+  "Games",
   "Writing",
   "Data",
   "Design",
@@ -201,6 +202,61 @@ const SKILLS: Skill[] = [
     ],
     usagePrompt:
       "Restyle this landing page the frontend-aesthetics way — name a direction, retheme the tokens, and sweep the slop catalog.",
+  },
+  {
+    slug: "game-design",
+    name: "Game Design",
+    tagline:
+      "Design judgment for games — core loops, meaningful choices, balance, difficulty, juice — engine-agnostic doctrine.",
+    category: "Games",
+    tags: ["game-design", "balance", "game-feel", "progression", "playtesting"],
+    version: "1.0.0",
+    updated: "Jul 2, 2026",
+    agents: ["Claude Code", "Codex"],
+    sourcePath: "skills/game-design",
+    overview:
+      "Game Design loads a conviction into your agent: a game is a machine that generates interesting decisions wrapped in feedback that feels good — and when it's boring, the loop is broken somewhere specific, not lacking features. The core file carries fifteen non-negotiables and two decision frameworks (is this mechanic worth adding, and the boring/too-hard triage); six reference files go deep on core loops and session shapes, mechanics and depth-versus-complexity, balance and economies, difficulty curves and progression, onboarding that teaches through play, game feel and the juice catalog, and playtesting with scope discipline. Engine-agnostic: it pairs with web-games and threejs for implementation.",
+    capabilities: [
+      "The find-the-fun gate: core verb polished naked before any meta — meta amplifies fun, never creates it",
+      "Loop-layer analysis: moment, encounter, session, meta — and which one is actually broken when players say 'boring'",
+      "Meaningful-choice anatomy: trade-offs, degenerate forms (calculations, blind picks, false choices), depth over complexity",
+      "Economy architecture: sources, sinks, curves, inflation control, pity timers, input-vs-output randomness",
+      "Difficulty as legibility first: telegraph audits, retry-loop length, teach-test-twist-rest rhythm",
+      "Onboarding doctrine: players don't read — the teaching-tool hierarchy from level design down to popups",
+      "The juice catalog as information theory: hitstop, screenshake, squash-and-stretch — proportional, accessible, budgeted",
+      "Playtest protocol: silent observation, behavior over opinions, the two-strike rule for killing darlings",
+      "Scope as a design skill: vertical slices, cut order, the game-jam scope masterclass",
+    ],
+    usagePrompt:
+      "Diagnose my game the game-design way — find which loop layer is broken, audit the choices for trade-offs, and tell me what to cut.",
+  },
+  {
+    slug: "web-games",
+    name: "Web Games",
+    tagline:
+      "Browser games done right — fixed-timestep loops, Phaser, canvas, collision, input feel, juice, and shipping to itch.",
+    category: "Games",
+    tags: ["phaser", "canvas", "html5-games", "gamedev", "webaudio"],
+    version: "1.0.0",
+    updated: "Jul 2, 2026",
+    agents: ["Claude Code", "Codex"],
+    sourcePath: "skills/web-games",
+    overview:
+      "Web Games loads the two disciplines of browser game engineering into your agent: game architecture (fixed-timestep loops, scenes, entities, collision) and web-specific survival (GC discipline, audio unlock, tab lifecycle, load budgets). The core file carries fifteen non-negotiables and two decision frameworks (how much physics engine you need, and the stutter triage); ten reference files go deep on the canonical game loop, Phaser, raw Canvas 2D rendering, physics and collision, input with forgiveness systems, tilemaps via Tiled/LDtk, WebAudio, the juice catalog implemented in code, performance and asset pipelines, and shipping with versioned saves. It implements what the game-design rune prescribes.",
+    capabilities: [
+      "The canonical loop: fixed timestep, clamped delta, interpolated render — identical gameplay at 60 and 144Hz",
+      "Stack sizing: vanilla canvas for jams, Phaser for games, hand-rolled AABB before physics engines",
+      "Phaser doctrine: parallel UI scenes, arcade physics feel kit, pooling groups, and the bug bestiary",
+      "Collision craft: axis-separated resolution, spatial hashing, tunneling fixes, hitbox-hurtbox asymmetry",
+      "Input as engineering: device-to-action mapping, buffering and coyote time as code, gamepad and touch done natively",
+      "Tilemap pipelines: LDtk/Tiled as the source of truth, chunked pre-rendering, tile-grid broadphase for free",
+      "WebAudio without tears: the unlock gesture, a real mixer in 100 lines, vertical music layering, pitch-varied SFX",
+      "The juice catalog in code: trauma-model screenshake, hitstop, tweens with the five-easing kit, pooled particles",
+      "GC discipline and pooling: zero per-frame allocations, verified in the heap timeline",
+      "Shipping: versioned saves with migrations, the visibility trio, itch.io/Poki/Steam-via-Tauri paths",
+    ],
+    usagePrompt:
+      "Build this platformer the web-games way — fixed timestep, buffered jumps with coyote time, pooled particles, and saves that survive updates.",
   },
   {
     slug: "testing-doctrine",

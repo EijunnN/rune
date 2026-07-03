@@ -27,6 +27,8 @@ npx rune-add react-mastery
 | [web-security](skills/web-security/SKILL.md) | Engineering | Auth, authorization, injection, SSRF, secrets, headers, supply chain |
 | [frontend-aesthetics](skills/frontend-aesthetics/SKILL.md) | Design | Direction, typography, color, atmosphere, motion, the anti-slop catalog |
 | [testing-doctrine](skills/testing-doctrine/SKILL.md) | Testing | Strategy, mocking discipline, Playwright, flaky-test warfare, TDD |
+| [game-design](skills/game-design/SKILL.md) | Games | Core loops, meaningful choices, balance, difficulty, juice — engine-agnostic |
+| [web-games](skills/web-games/SKILL.md) | Games | Fixed-timestep loops, Phaser, canvas, collision, input feel, shipping |
 | [threejs](skills/threejs/SKILL.md) | Engineering | Scenes, PBR, glTF, GLSL + TSL shaders, WebGPU, react-three-fiber, games |
 
 Every rune works with **Claude Code** and **Codex** — and any agent that reads
